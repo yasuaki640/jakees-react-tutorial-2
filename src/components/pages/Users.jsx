@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { SearchInput } from '../molecules/SearchInput';
 import { UserCard } from '../orgamisms/user/UserCard';
+import { useLocation } from 'react-router-dom';
 
 const users = [...Array(10).keys()].map((val) => ({
   id: val,
@@ -15,6 +16,8 @@ const users = [...Array(10).keys()].map((val) => ({
 }));
 
 export const Users = () => {
+  const { state } = useLocation();
+  console.log(state);
   return (
     <SContainer>
       <h2>Incredible users list.</h2>
