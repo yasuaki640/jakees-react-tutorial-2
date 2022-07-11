@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { SearchInput } from '../molecules/SearchInput';
 import { UserCard } from '../orgamisms/user/UserCard';
-import { useLocation } from 'react-router-dom';
+import { SecondaryButton } from '../atoms/buttom/SecondaryButton';
+import { useContext } from 'react';
+import { UserContext } from '../../providers/UserProvider';
 
 const users = [...Array(10).keys()].map((val) => ({
   id: val,
@@ -16,16 +18,17 @@ const users = [...Array(10).keys()].map((val) => ({
 }));
 
 export const Users = () => {
-  const { state } = useLocation();
-  console.log(state);
+  const { userInfo, setUserInfo } = useContext(UserContext);
+  const onClickSwitch = () => setUserInfo({ isAdmin: !userInfo.isAdmin });
+
   return (
     <SContainer>
       <h2>Incredible users list.</h2>
       <SearchInput />
+      <br />
+      <SecondaryButton onClick={onClickSwitch}>Switch</SecondaryButton>
       <SUserArea>
-        {users.map((user) => (
-          <UserCard key={user.id} user={user} />
-        ))}
+        {users.map((user) => (<UserCard key={user.id} user={user} />))}
       </SUserArea>
     </SContainer>
   );
