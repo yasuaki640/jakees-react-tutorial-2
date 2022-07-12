@@ -6,7 +6,7 @@ import { userState } from '../../store/userState';
 
 export const Top = () => {
   const history = useHistory();
-  // const { setUserInfo } = useContext(UserContext);
+
   const setUserInfo = useSetRecoilState(userState);
 
   const onClickAdmin = () => {

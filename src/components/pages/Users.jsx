@@ -4,21 +4,21 @@ import { UserCard } from '../orgamisms/user/UserCard';
 import { SecondaryButton } from '../atoms/buttom/SecondaryButton';
 import { useRecoilState } from 'recoil';
 import { userState } from '../../store/userState';
+import { faker } from '@faker-js/faker';
 
 const users = [...Array(10).keys()].map((val) => ({
   id: val,
-  name: `jakee${val}`,
-  image: 'https://source.unsplash.com/cZAj2txBFO8',
-  email: `$(photo.user.name}@test.com`,
-  phone: Math.random().toString(),
+  name: faker.name.findName(),
+  image: faker.image.avatar(),
+  email: faker.internet.email(),
+  phone: faker.phone.number(),
   company: {
-    name: 'test co.',
+    name: faker.company.companyName(),
   },
-  website: 'https://unsplash.com/photos/cZAj2txBFO8',
+  website: faker.internet.url(),
 }));
 
 export const Users = () => {
-  // const { userInfo, setUserInfo } = useContext(UserContext);
   const [userInfo, setUserInfo] = useRecoilState(userState);
 
   const onClickSwitch = () => setUserInfo({ isAdmin: !userInfo.isAdmin });
